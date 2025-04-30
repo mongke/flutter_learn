@@ -96,45 +96,73 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Column(
           children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.all(20),
-              child: Text(
-                'Tournament List',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            SizedBox(height: 30),
+            IoTitleItem(text: 'Tournaments', hasIcon: false ,),
+            SizedBox(
+              height: 180,
+              child: ListView(
+                
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
+                children: [
+                  IoTournamentCard(
+                    imagePath: 'assets/images/pubg.jpg',
+                    titleText: 'Valorant',
+                    statusText: 'In Progress',
+                  ),
+                  IoTournamentCard(
+                    imagePath: 'assets/images/pubg.jpg',
+                    titleText: 'Valorant',
+                    statusText: 'In Progress',
+                  ),
+                  IoTournamentCard(
+                    imagePath: 'assets/images/pubg.jpg',
+                    titleText: 'Valorant',
+                    statusText: 'In Progress',
+                  ),
+                ],
               ),
             ),
-            Row(
-              children: [
-                SizedBox(width: 20),
-                SingleChildScrollView(
-                  scrollDirection:
-                      Axis.horizontal, // Enable horizontal scrolling
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ), // Add horizontal padding
-                  child: Row(
-                    children: [
-                      IoTournamentCard(
-                        imagePath: 'assets/images/pubg.jpg',
-                        titleText: 'PUBG Mobile',
-                        statusText: 'Not Started',
-                      ),
-                      IoTournamentCard(
-                        imagePath: 'assets/images/pubg.jpg',
-                        titleText: 'Valorant',
-                        statusText: 'In Progress',
-                      ),
-
-                      // Add more cards
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          
+          
+            // Row(
+            //   children: [
+            //     SizedBox(width: 20),
+            //     SingleChildScrollView(
+            //       scrollDirection:
+            //           Axis.horizontal, // Enable horizontal scrolling
+            //       padding: EdgeInsets.symmetric(
+            //         horizontal: 16,
+            //       ), // Add horizontal padding
+            //       child: Row(
+            //         children: [
+                     
+            //           IoTournamentCard(
+            //             imagePath: 'assets/images/pubg.jpg',
+            //             titleText: 'Valorant',
+            //             statusText: 'In Progress',
+            //           ),
+                  
+    
+            //           // Add more cards
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(height: 20),
-            IoTitleItem(text: 'News'),
+            IoTitleItem(text: 'News', hasIcon: true,),
             // Add your task list here
+            IoNewsCard(
+              imagePath: 'assets/images/pubg.jpg',
+              title: 'Valorant',
+            ),
+            IoNewsCard(
+              imagePath: 'assets/images/pubg.jpg',
+              title: 'Valorant',
+            ),
           ],
         ),
       ],

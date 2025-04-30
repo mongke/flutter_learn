@@ -8,29 +8,25 @@ class IoNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return  Container(
       width: 280,
       margin: EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            bottom: 16,
-            left: 16,
-            child: Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                shadows: [Shadow(blurRadius: 6, color: Colors.black)],
-              ),
-            ),
+      child: Positioned(
+        bottom: 16,
+        left: 16,
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            shadows: [Shadow(blurRadius: 6, color: Colors.black)],
           ),
-        ],
+        ),
       ),
     );
   }

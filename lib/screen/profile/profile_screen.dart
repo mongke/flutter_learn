@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             bottom: 0, // Extend to the bottom of the screen
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white, // Solid white background
+                color: Colors.white.withOpacity(0.6), // Solid white background
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
@@ -115,13 +115,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             top: 300, // Position below the profile section
             left: 16,
             right: 16,
-            child: Column(
-              children: const [
-                ProfileItem(icon: Icon(Icons.settings), text: "Settings"),
-                ProfileItem(icon: Icon(Icons.people), text: "Team info"),
-                ProfileItem(icon: Icon(Icons.emoji_events), text: "Rank"),
-                ProfileItem(icon: Icon(Icons.delete), text: "Delete Account"),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: const [
+                  ProfileItem(icon: Icon(Icons.settings), text: "Settings"),
+                  ProfileItem(icon: Icon(Icons.people), text: "Team info"),
+                  ProfileItem(icon: Icon(Icons.emoji_events), text: "Rank"),
+                  ProfileItem(icon: Icon(Icons.delete), text: "Delete Account"),
+                ],
+              ),
             ),
           ),
         ],

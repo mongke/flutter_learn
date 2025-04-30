@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class IoTitleItem extends StatelessWidget {
   final String text;
+  final bool hasIcon;
 
-  const IoTitleItem({super.key, required this.text});
+  const IoTitleItem({super.key, required this.text, required this.hasIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class IoTitleItem extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Spacer(),
-          Icon(Icons.arrow_right),
+          hasIcon?
+          Icon(Icons.arrow_right): SizedBox.shrink(),
         ],
       ),
     );
