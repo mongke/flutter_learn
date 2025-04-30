@@ -4,7 +4,7 @@ class IoTitleItem extends StatelessWidget {
   final String text;
   final bool hasIcon;
 
-  const IoTitleItem({super.key, required this.text, required this.hasIcon});
+  const IoTitleItem({super.key, required this.text, this.hasIcon=false});
 
   @override
   Widget build(BuildContext context) {

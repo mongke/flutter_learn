@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:io_app/component/io_gap.dart';
 import 'package:io_app/component/io_news_card.dart';
 import 'package:io_app/component/io_title_item.dart';
 import 'package:io_app/component/io_tournament_card.dart';
@@ -94,76 +95,58 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        Column(
-          children: [
-            SizedBox(height: 30),
-            IoTitleItem(text: 'Tournaments', hasIcon: false ,),
-            SizedBox(
-              height: 180,
-              child: ListView(
-                
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
+        SizedBox(
+          height: 450,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                IoGap(),
+                IoTitleItem(text: 'Tournaments'),
+                SizedBox(
+                  height: 200,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    children: [
+                      IoTournamentCard(
+                        imagePath: 'assets/images/pubg.jpg',
+                        titleText: 'Valorant',
+                        statusText: 'In Progress',
+                      ),
+                      IoTournamentCard(
+                        imagePath: 'assets/images/pubg.jpg',
+                        titleText: 'PUBG game',
+                        statusText: 'Not Started',
+                      ),
+                      IoTournamentCard(
+                        imagePath: 'assets/images/pubg.jpg',
+                        titleText: 'Valorant',
+                        statusText: 'In Progress',
+                      ),
+                    ],
+                  ),
                 ),
-                children: [
-                  IoTournamentCard(
-                    imagePath: 'assets/images/pubg.jpg',
-                    titleText: 'Valorant',
-                    statusText: 'In Progress',
-                  ),
-                  IoTournamentCard(
-                    imagePath: 'assets/images/pubg.jpg',
-                    titleText: 'Valorant',
-                    statusText: 'In Progress',
-                  ),
-                  IoTournamentCard(
-                    imagePath: 'assets/images/pubg.jpg',
-                    titleText: 'Valorant',
-                    statusText: 'In Progress',
-                  ),
-                ],
-              ),
+                IoGap(),
+                IoTitleItem(text: 'News', hasIcon: true),
+                // Add your task list here
+                IoNewsCard(
+                  imagePath: 'assets/images/pubg.jpg',
+                  title: 'Valorant',
+                ),
+                IoNewsCard(
+                  imagePath: 'assets/images/pubg.jpg',
+                  title: 'Valorant',
+                ),
+                IoGap(),
+                IoTitleItem(text: 'Match List', hasIcon: true),
+                IoNewsCard(
+                  imagePath: 'assets/images/pubg.jpg',
+                  title: 'Valorant',
+                ),
+              ],
             ),
-          
-          
-            // Row(
-            //   children: [
-            //     SizedBox(width: 20),
-            //     SingleChildScrollView(
-            //       scrollDirection:
-            //           Axis.horizontal, // Enable horizontal scrolling
-            //       padding: EdgeInsets.symmetric(
-            //         horizontal: 16,
-            //       ), // Add horizontal padding
-            //       child: Row(
-            //         children: [
-                     
-            //           IoTournamentCard(
-            //             imagePath: 'assets/images/pubg.jpg',
-            //             titleText: 'Valorant',
-            //             statusText: 'In Progress',
-            //           ),
-                  
-    
-            //           // Add more cards
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            SizedBox(height: 20),
-            IoTitleItem(text: 'News', hasIcon: true,),
-            // Add your task list here
-            IoNewsCard(
-              imagePath: 'assets/images/pubg.jpg',
-              title: 'Valorant',
-            ),
-            IoNewsCard(
-              imagePath: 'assets/images/pubg.jpg',
-              title: 'Valorant',
-            ),
-          ],
+          ),
         ),
       ],
     );
