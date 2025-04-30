@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:io_app/component/io_news_card.dart';
+import 'package:io_app/component/io_title_item.dart';
+import 'package:io_app/component/io_tournament_card.dart';
 import 'package:io_app/component/profile_item.dart';
 import 'package:io_app/theme/io_colors.dart';
 
@@ -104,34 +107,36 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: [
                 SizedBox(width: 20),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4.0,
-                        offset: Offset(0, 2),
+                SingleChildScrollView(
+                  scrollDirection:
+                      Axis.horizontal, // Enable horizontal scrolling
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ), // Add horizontal padding
+                  child: Row(
+                    children: [
+                      IoTournamentCard(
+                        imagePath: 'assets/images/pubg.jpg',
+                        titleText: 'PUBG Mobile',
+                        statusText: 'Not Started',
                       ),
+                      IoTournamentCard(
+                        imagePath: 'assets/images/pubg.jpg',
+                        titleText: 'Valorant',
+                        statusText: 'In Progress',
+                      ),
+
+                      // Add more cards
                     ],
                   ),
-                  child: Text(
-                    'All',
-                    style: TextStyle(color: Colors.white),
-                  ),
                 ),
-                
               ],
             ),
+            SizedBox(height: 20),
+            IoTitleItem(text: 'News'),
             // Add your task list here
           ],
         ),
-                ProfileItem(icon: Icon(Icons.settings), text: "Settings"),
-                ProfileItem(icon: Icon(Icons.people), text: "Team info"),
-                ProfileItem(icon: Icon(Icons.abc), text: "Rank"),
-                ProfileItem(icon: Icon(Icons.delete), text: "Delete Account")
       ],
     );
   }
