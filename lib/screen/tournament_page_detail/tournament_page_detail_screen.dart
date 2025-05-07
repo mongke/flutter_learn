@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:io_app/component/io_button.dart';
+import 'package:io_app/component/io_date_time_summary_card.dart';
+import 'package:io_app/component/io_drop_down.dart';
 import 'package:io_app/component/io_gap.dart';
 import 'package:io_app/component/io_place_tile.dart';
+import 'package:io_app/component/io_stage_selector.dart';
+import 'package:io_app/component/io_team_card.dart';
 import 'package:io_app/component/io_title_item.dart';
 import 'package:io_app/theme/io_colors.dart';
 
-class TournamentDetailsPage extends StatelessWidget {
+class TournamentDetailsPage extends StatefulWidget {
   final String titleText;
   final String statusText;
   final String imagePath;
@@ -18,12 +22,20 @@ class TournamentDetailsPage extends StatelessWidget {
   });
 
   @override
+  State<TournamentDetailsPage> createState() => _TournamentDetailsPageState();
+}
+
+class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
+  String selectedGroup = "Group C";
+  String selectedDay = "March 28";
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Text(titleText),
+          title: Text(widget.titleText),
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Information'),
@@ -41,7 +53,7 @@ class TournamentDetailsPage extends StatelessWidget {
                 children: [
                   // Top Image
                   Image.asset(
-                    imagePath,
+                    widget.imagePath,
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -70,7 +82,7 @@ class TournamentDetailsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Game: $titleText',
+                            'Game: ${widget.titleText}',
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -80,7 +92,7 @@ class TournamentDetailsPage extends StatelessWidget {
                           Text('Maps:', style: const TextStyle(fontSize: 16)),
                           const SizedBox(height: 16),
                           Text(
-                            statusText,
+                            widget.statusText,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -88,7 +100,7 @@ class TournamentDetailsPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           const Text(
-                            'Price Pool: \10,000,000₮ / \$2,000',
+                            'Prize Pool: 10,000,000₮ / \$2,000',
                             style: TextStyle(fontSize: 16),
                           ),
                         ],
@@ -129,62 +141,193 @@ class TournamentDetailsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // Table rows
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IoPlaceTile(place: "1",points: "10pts", purple: true),
-                            IoPlaceTile(place: "5", points:  "3pts"),
+                          children: const [
+                            Text(
+                              "Place",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "Points",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "Place",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "Points",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IoPlaceTile(place: "2", points: "6pts", purple: true),
-                            IoPlaceTile(place: "6", points: "2pts"),
+                          children: const [
+                            IoPlaceTile(
+                              place: "1",
+                              points: "10pts",
+                              purple: true,
+                            ),
+                            IoPlaceTile(place: "5", points: "3pts"),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IoPlaceTile(place: "3", points: "5pts", purple: true),
-                            IoPlaceTile(place: "7-8", points: "1pts"),
+                          children: const [
+                            IoPlaceTile(
+                              place: "1",
+                              points: "10pts",
+                              purple: true,
+                            ),
+                            IoPlaceTile(place: "5", points: "3pts"),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            IoPlaceTile(place: "4", points: "4pts", purple: true),
-                            IoPlaceTile(place: "9-16", points: "0pts"),
+                          children: const [
+                            IoPlaceTile(
+                              place: "1",
+                              points: "10pts",
+                              purple: true,
+                            ),
+                            IoPlaceTile(place: "5", points: "3pts"),
                           ],
-                        ),
-
-                        SizedBox(height: 16),
-
-                        // Bottom caption
-                        Text(
-                          "1 Elimination = 1 Point",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
                         ),
                       ],
                     ),
+                  ),
+                  IoGap(),
+                  IoTitleItem(text: 'Schedule:'),
+                  IoDateTimeSummaryCard(
+                    entries: [
+                      IoDateTimeEntry(
+                        label: "Registration start",
+                        date: "2025/03/17",
+                        time: "23:03",
+                      ),
+                      IoDateTimeEntry(
+                        label: "Registration end",
+                        date: "2025/03/27",
+                        time: "23:03",
+                      ),
+                      IoDateTimeEntry(
+                        label: "Tournament start",
+                        date: "2025/03/28",
+                        time: "15:03",
+                      ),
+                      IoDateTimeEntry(
+                        label: "Tournament end",
+                        date: "2025/04/07",
+                        time: "15:04",
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             // Participants Tab
-            Center(
-              child: Text(
-                'Participants List',
-                style: const TextStyle(fontSize: 16),
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Team A',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  GridView.count(
+                    crossAxisCount: 3,
+                    padding: const EdgeInsets.all(16),
+                    childAspectRatio: 0.8,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: List.generate(6, (index) {
+                      return Column(
+                        children: [
+                          IoTeamCard(
+                            imagePath: 'assets/images/mongolz.png',
+                            teamName: 'Mongolz',
+                          ),
+                          IoGap(),
+                        ],
+                      );
+                    }),
+                  ),
+                ],
               ),
             ),
             // Results Tab
-            Center(
-              child: Text('Results', style: const TextStyle(fontSize: 16)),
+            SafeArea(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // IoStageSelector in a horizontal scrollable view
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: const [
+                          IoStageSelector(
+                            stages: [
+                              'Open Qualifier',
+                              'Closed Qualifier',
+                              'Main Event',
+                              'Grand Finals',
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    IoDropDown(
+                      label: "Select Group",
+                      value: selectedGroup,
+                      values: List.generate(
+                        8,
+                        (i) => "Group ${String.fromCharCode(65 + i)}",
+                      ),
+                      bottomSheetTitle: "Choose a Group",
+                      onChanged: (val) => setState(() => selectedGroup = val),
+                    ),
+                    const SizedBox(height: 12),
+                    IoDropDown(
+                      label: "Select Day",
+                      value: selectedDay,
+                      values: ["March 28", "March 29", "March 30"],
+                      bottomSheetTitle: "Choose a Day",
+                      onChanged: (val) => setState(() => selectedDay = val),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

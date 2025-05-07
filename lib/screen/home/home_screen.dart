@@ -3,7 +3,6 @@ import 'package:io_app/component/io_gap.dart';
 import 'package:io_app/component/io_news_card.dart';
 import 'package:io_app/component/io_title_item.dart';
 import 'package:io_app/component/io_tournament_card.dart';
-import 'package:io_app/component/profile_item.dart';
 import 'package:io_app/theme/io_colors.dart';
 
 class HomeScreen extends StatefulWidget {
