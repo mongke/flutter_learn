@@ -4,6 +4,7 @@ import 'package:io_app/component/io_date_time_summary_card.dart';
 import 'package:io_app/component/io_divider.dart';
 import 'package:io_app/component/io_drop_down.dart';
 import 'package:io_app/component/io_gap.dart';
+import 'package:io_app/component/io_match_card.dart';
 import 'package:io_app/component/io_place_tile.dart';
 import 'package:io_app/component/io_stage_selector.dart';
 import 'package:io_app/component/io_team_card.dart';
@@ -29,6 +30,7 @@ class TournamentDetailsPage extends StatefulWidget {
 class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
   String selectedGroup = "Group C";
   String selectedDay = "March 28";
+  String selectedMatch = "Match - 3";
 
   @override
   Widget build(BuildContext context) {
@@ -277,7 +279,7 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       );
                     }),
                   ),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       'Team B',
@@ -353,7 +355,96 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       onChanged: (val) => setState(() => selectedDay = val),
                     ),
                     IoDivider(),
-                                      
+                    const SizedBox(height: 8),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          IoMatchCard(
+                            matchData: "Match - 3",
+                            colorName:
+                                selectedMatch == "Match - 3"
+                                    ? IOColors.primary500
+                                    : Colors.grey[500],
+                            onTap: () {
+                              setState(() {
+                                selectedMatch = "Match - 3";
+                              });
+                            },
+                          ),
+                          IoMatchCard(
+                            matchData: "Match - 4",
+                            colorName:
+                                selectedMatch == "Match - 4"
+                                    ? IOColors.primary500
+                                    : Colors.grey[500],
+                            onTap: () {
+                              setState(() {
+                                selectedMatch = "Match - 4";
+                              });
+                            },
+                          ),
+                          IoMatchCard(
+                            matchData: "Match - 5",
+                            colorName:
+                                selectedMatch == "Match - 5"
+                                    ? IOColors.primary500
+                                    : Colors.grey[500],
+                            onTap: () {
+                              setState(() {
+                                selectedMatch = "Match - 5";
+                              });
+                            },
+                          ),
+                          IoMatchCard(
+                            matchData: "Match - 6",
+                            colorName:
+                                selectedMatch == "Match - 6"
+                                    ? IOColors.primary500
+                                    : Colors.grey[500],
+                            onTap: () {
+                              setState(() {
+                                selectedMatch = "Match - 6";
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    // const SizedBox(height: 16),
+                    IoGap(),
+                    Center(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: IOColors.primary500)
+                        ),
+                        child: Text("SEE GROUP OVERALL RANKING", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: IOColors.primary500)),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const IoTitleItem(
+                      text: 'Match Ranking',
+                      widget: SizedBox(
+                        width: 120,
+                        child: IoMatchCard(matchData: "see MVP"),
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          "No Result",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
