@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:io_app/component/io_button.dart';
 import 'package:io_app/component/io_date_time_summary_card.dart';
+import 'package:io_app/component/io_divider.dart';
 import 'package:io_app/component/io_drop_down.dart';
 import 'package:io_app/component/io_gap.dart';
 import 'package:io_app/component/io_place_tile.dart';
@@ -276,6 +277,34 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       );
                     }),
                   ),
+                   Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Team B',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  GridView.count(
+                    crossAxisCount: 3,
+                    padding: const EdgeInsets.all(16),
+                    childAspectRatio: 0.8,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: List.generate(6, (index) {
+                      return Column(
+                        children: [
+                          IoTeamCard(
+                            imagePath: 'assets/images/silent_crew.png',
+                            teamName: 'Silent Crew',
+                          ),
+                          IoGap(),
+                        ],
+                      );
+                    }),
+                  ),
                 ],
               ),
             ),
@@ -283,13 +312,10 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
             SafeArea(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 12),
                     // IoStageSelector in a horizontal scrollable view
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -307,6 +333,7 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       ),
                     ),
                     const SizedBox(height: 12),
+                    IoDivider(),
                     IoDropDown(
                       label: "Select Group",
                       value: selectedGroup,
@@ -317,7 +344,7 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       bottomSheetTitle: "Choose a Group",
                       onChanged: (val) => setState(() => selectedGroup = val),
                     ),
-                    const SizedBox(height: 12),
+                    IoDivider(),
                     IoDropDown(
                       label: "Select Day",
                       value: selectedDay,
@@ -325,6 +352,8 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                       bottomSheetTitle: "Choose a Day",
                       onChanged: (val) => setState(() => selectedDay = val),
                     ),
+                    IoDivider(),
+                                      
                   ],
                 ),
               ),

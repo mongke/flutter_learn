@@ -3,6 +3,7 @@ import 'package:io_app/component/io_gap.dart';
 import 'package:io_app/component/io_news_card.dart';
 import 'package:io_app/component/io_title_item.dart';
 import 'package:io_app/component/io_tournament_card.dart';
+import 'package:io_app/screen/notification/notification_screen.dart';
 import 'package:io_app/theme/io_colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -85,6 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icon(Icons.notifications, color: Colors.white),
                       onPressed: () {
                         // Handle notification button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NotificationScreen(),
+                          ),
+                        );
                       },
                     ),
                   ),
