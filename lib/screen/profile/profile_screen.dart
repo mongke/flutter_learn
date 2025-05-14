@@ -1,5 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:io_app/component/io_team_member_tile.dart';
 import 'package:io_app/component/profile_item.dart';
+import 'package:io_app/screen/on_boarding/on_boarding_screen.dart';
+import 'package:io_app/screen/product/product_screen.dart';
+import 'package:io_app/screen/team_info/team_info_screen.dart';
 import 'package:io_app/theme/io_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -57,8 +64,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           // Third container: Profile section overlapping both containers
           Positioned(
-            top: 150, // Positioned at the border of the first and second containers
-            left: MediaQuery.of(context).size.width / 2 - 50, // Center horizontally
+            top:
+                150, // Positioned at the border of the first and second containers
+            left:
+                MediaQuery.of(context).size.width / 2 -
+                50, // Center horizontally
             child: Column(
               children: [
                 Stack(
@@ -66,18 +76,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.white,
-                      backgroundImage: const AssetImage('assets/images/profile_user.jpg'),
-                        child: Container(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundImage: const AssetImage(
+                        'assets/images/profile_user.jpg',
+                      ),
+                      child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border: Border.all(
-                          color: Colors.white,
-                          width: 2,
-                          ),
+                          border: Border.all(color: Colors.white, width: 2),
                         ),
-                        ),
+                      ),
                     ),
                     Positioned(
                       right: 0,
@@ -101,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const Text(
                   "David Smith",
                   style: TextStyle(
-                    color:  IOColors.primary500,
+                    color: IOColors.primary500,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -117,11 +126,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
             right: 16,
             child: SingleChildScrollView(
               child: Column(
-                children: const [
+                children: [
                   ProfileItem(icon: Icon(Icons.settings), text: "Settings"),
-                  ProfileItem(icon: Icon(Icons.people), text: "Team info"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => TeamDetailScreen(
+                                teamName: "Alpha Squad",
+                                rank: "2",
+                                members: [
+                                  TeamMember(
+                                    role: "Team IGL",
+                                    name: "Azaashi",
+                                    imagePath: "assets/images/silent_crew.png",
+                                  ),
+                                  TeamMember(
+                                    role: "Team member",
+                                    name: "enji",
+                                    imagePath: "assets/images/profile_user.jpg",
+                                  ),
+                                  TeamMember(
+                                    role: "Team member",
+                                    name: "Shinigami",
+                                    imagePath: "assets/images/profile_user.jpg",
+                                  ),
+                                  TeamMember(
+                                    role: "Team member",
+                                    name: "spex",
+                                    imagePath: "assets/images/profile_user.jpg",
+                                  ),
+                                  TeamMember(
+                                    role: "Team member",
+                                    name: "hish",
+                                    imagePath: "assets/images/profile_user.jpg",
+                                  ),
+                                ],
+                              ),
+                        ),
+                      );
+                    },
+                    child: ProfileItem(
+                      icon: Icon(Icons.people),
+                      text: "Team info",
+                    ),
+                  ),
                   ProfileItem(icon: Icon(Icons.emoji_events), text: "Rank"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProductScreen()));
+                    },
+                    child: ProfileItem(
+                      icon: Icon(Icons.production_quantity_limits),
+                      text: "Products",
+                    ),
+                  ),
                   ProfileItem(icon: Icon(Icons.delete), text: "Delete Account"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OnBoardingScreen(),
+                        ),
+                      );
+                    },
+                    child: ProfileItem(
+                      icon: Icon(Icons.portable_wifi_off),
+                      text: "OnBoarding",
+                    ),
+                  ),
                 ],
               ),
             ),

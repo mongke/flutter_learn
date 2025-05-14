@@ -414,14 +414,49 @@ class _TournamentDetailsPageState extends State<TournamentDetailsPage> {
                     // const SizedBox(height: 16),
                     IoGap(),
                     Center(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: IOColors.primary500)
+                      child: GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Group Overall Ranking"),
+                                content: const Text(
+                                  "This is the group overall ranking popup. You can display detailed information here.",
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(
+                                        context,
+                                      ).pop(); // Close the popup
+                                    },
+                                    child: const Text("Approve"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 40,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: IOColors.primary500),
+                          ),
+                          child: Text(
+                            "SEE GROUP OVERALL RANKING",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: IOColors.primary500,
+                            ),
+                          ),
                         ),
-                        child: Text("SEE GROUP OVERALL RANKING", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: IOColors.primary500)),
                       ),
                     ),
                     const SizedBox(height: 8),
